@@ -11,12 +11,22 @@ import {TodoService} from "../shared/todo/todo.service";
 export class TodoListComponent implements OnInit {
   @Input() todos: Todo[];
   todoNewForm: FormGroup;
+  errorRandomTodo: boolean = false;
+
   constructor(private todoService: TodoService) { }
 
   ngOnInit() {
     this.todoNewForm = new FormGroup({
       'title': new FormControl(null, [Validators.required, this.uniqueTitle.bind(this)]),
     });
+
+    //Adding random todo
+    setInterval(() => {
+      if(!this.todoService.addRandomTodo()){
+        this.errorRandomTodo = true;
+        setTimeout(() => { this.errorRandomTodo = false}, 5000);
+      }
+    }, 1000 * 20);
   }
 
   onAddItem(formDirective: FormGroupDirective){

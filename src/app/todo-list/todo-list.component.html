@@ -1,4 +1,6 @@
 <mat-selection-list>
+  <mat-error *ngIf="errorRandomTodo">Random todo could not be added.</mat-error>
+
   <app-todo-item *ngFor="let task of todos" [task]="task"></app-todo-item>
 
   <form class="example-form" [formGroup]="todoNewForm" (ngSubmit)="onAddItem(formDirective)" #formDirective="ngForm">

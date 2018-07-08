@@ -6,8 +6,7 @@ export class TodoService {
 
     //initial array
     private todos: Todo[] = [
-        new Todo(1, 'Task 1', true),
-        new Todo(2, 'Task 2', false)
+
     ];
 
     //get all todos copy of original array
@@ -19,10 +18,24 @@ export class TodoService {
         this.todos.push(todo);
         this.todosChanged.next(this.todos.slice());
     }
+    //Adding random todo
+    addRandomTodo(){
+
+        let randomTitle = 'Task '+Math.floor((Math.random() * 1000) + 1); //generating random title
+
+        //check if task is added
+        if(this.isNotUniqueTitle(randomTitle))
+            return false;
+        let todo = new Todo(this.autoIncrementId(), randomTitle, false);
+        this.todos.push(todo);
+        this.todosChanged.next(this.todos.slice());
+        return true;
+    }
 
     updateTodo(todoId: number){
 
-        const tIndex = this.todos.findIndex(t => t.id === todoId);
+        const tIndex = this.todos.findIndex(t => t.id === todoId); // find index of passed id
+        //check if exists
         if(tIndex === undefined)
             return false;
         let refTodo = this.todos[tIndex];

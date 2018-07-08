@@ -2,6 +2,7 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {TodoService} from "./shared/todo/todo.service";
 import {Todo} from "./shared/todo/todo.model";
 import {Subscription} from "rxjs";
+import {trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit, OnDestroy{
           this.todoList = todos;
         }
     );
+
   }
   ngOnDestroy(){
     this.subscription.unsubscribe();
