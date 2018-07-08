@@ -1,3 +1,3 @@
-<p>
-  todo-list works!
-</p>
+<mat-selection-list>
+  <app-todo-item *ngFor="let task of todos" [task]="task"></app-todo-item>
+</mat-selection-list>

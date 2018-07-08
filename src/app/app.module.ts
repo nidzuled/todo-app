@@ -11,6 +11,7 @@ import {
 } from "@angular/material";
 import {ReactiveFormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {TodoService} from "./shared/todo/todo.service";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     BrowserAnimationsModule
 
   ],
-  providers: [],
+  providers: [TodoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
