@@ -1,3 +1,17 @@
 <mat-selection-list>
   <app-todo-item *ngFor="let task of todos" [task]="task"></app-todo-item>
+
+  <form class="example-form" [formGroup]="todoNewForm" (ngSubmit)="onAddItem(formDirective)" #formDirective="ngForm">
+    <mat-form-field class="todo-title">
+      <input matInput placeholder="New todo item" formControlName="title">
+      <mat-error *ngIf="!todoNewForm.get('title').valid && todoNewForm.get('title').touched">
+        <mat-error *ngIf="todoNewForm.get('title').errors['titleNotUnique']">This task is already added!</mat-error>
+        <mat-error *ngIf="todoNewForm.get('title').errors['required']">This field is required!</mat-error>
+      </mat-error>
+    </mat-form-field>
+    <button mat-fab color="primary" type="submit">
+      <mat-icon aria-label="Add new todo item">add</mat-icon>
+    </button>
+  </form>
+
 </mat-selection-list>

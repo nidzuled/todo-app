@@ -15,6 +15,11 @@ export class TodoService {
         return this.todos.slice();
     }
 
+    addTodo(todo: Todo){
+        this.todos.push(todo);
+        this.todosChanged.next(this.todos.slice());
+    }
+
     updateTodo(todoId: number){
 
         const tIndex = this.todos.findIndex(t => t.id === todoId);
@@ -25,4 +30,14 @@ export class TodoService {
         this.todosChanged.next(this.todos.slice());
         return true;
     }
+
+    autoIncrementId(){
+        return this.todos.length+1;
+    }
+
+    isNotUniqueTitle(title: string){
+
+        return this.todos.find(x => x.title === title) !== undefined
+    }
+
 }
