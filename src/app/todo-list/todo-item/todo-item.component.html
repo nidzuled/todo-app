@@ -1,3 +1,3 @@
-<mat-list-option [selected]="task.complete"  checkboxPosition="before">
+<mat-list-option [selected]="task.complete"  checkboxPosition="before" (click)="updateTodoStatus(task.id)">
   {{task.title}}
 </mat-list-option>
